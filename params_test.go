@@ -15,7 +15,7 @@ func TestM_AssignTo(t *testing.T) {
 	type School struct {
 		ID     int    `param:"-" json:"id"`
 		Name   string `param:"name" json:"name"`
-		RoomID int    `parma:"room_id" json:"-"`
+		RoomID int    `param:"room_id" json:"-"`
 		//Room   *Room  `param:"-" json:"room"`
 	}
 	params := M {"id": "123", "name":"primary school", "room_id":"1"}
@@ -24,6 +24,5 @@ func TestM_AssignTo(t *testing.T) {
 	fmt.Println(s)
 	assert := assert.New(t)
 	assert.Equal(s.Name, "primary school")
-	assert.Equal(s.ID, "123")
-	assert.Equal(s.RoomID, "1")
+	assert.Equal(s.RoomID, 1)
 }

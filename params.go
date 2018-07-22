@@ -3,6 +3,7 @@ package snippet
 import (
 	"reflect"
 	"strings"
+	"strconv"
 )
 
 type Tmp struct {
@@ -64,6 +65,14 @@ func assign(dstVal reflect.Value, src interface{}, tagName string) bool {
 	}
 
 	switch dstVal.Kind() {
+	case reflect.String:
+		dstVal.Set(sv)
+	case reflect.Int:
+		vInt ,err := strconv.Atoi(sv.Interface().(string))
+		if err != nil {
+			return false
+		}
+		dstVal.SetInt(int64(vInt))
 	case reflect.Struct:
 		if sv.Kind() != reflect.Map || sv.Type().Key().Kind() != reflect.String {
 			return false

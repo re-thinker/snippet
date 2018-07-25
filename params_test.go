@@ -16,9 +16,9 @@ func TestM_AssignTo(t *testing.T) {
 		ID     int    `param:"-" json:"id"`
 		Name   string `param:"name" json:"name"`
 		RoomID int    `param:"room_id" json:"-"`
-		//Room   *Room  `param:"-" json:"room"`
+		Room   *Room  `param:"-" json:"room"`
 	}
-	params := M {"id": "123", "name":"primary school", "room_id":"1"}
+	params := MapStringInterface {"id": "123", "name":"primary school", "room_id":"1"}
 	var s *School
 	params.AssignTo(&s, "param")
 	fmt.Println(s)

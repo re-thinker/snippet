@@ -6,13 +6,7 @@ import (
 	"strconv"
 )
 
-type Tmp struct {
-	ID string
-}
-
-type M map[string]interface{}
-
-func (m M) AssignTo(ptr interface{}, tagName string) bool {
+func (m MapStringInterface) AssignTo(ptr interface{}, tagName string) bool {
 	v := reflect.ValueOf(ptr)
 	if v.IsValid() == false {
 		return false
